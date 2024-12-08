@@ -3,7 +3,10 @@ from . import views
 
 
 urlpatterns = [
-    path('',views.home),
-    path('anasayfa',views.home),
-    path('kurslar',views.kurslar),
+    path('',views.kurslar),
+    path('list',views.kurslar),
+    path('details',views.details),
+    path('programlama',views.programlama),
+    path('mobil-uygulama',views.mobilUygulama),
+ 
 ]
