@@ -36,14 +36,20 @@ def mobilUygulama(request):
 
 def getCoursesByCategory(request,category_name):
    
-    
     try:
         category_text = data[category_name]
-        return HttpResponse(category_text)
+        return render(request,"courses/kurslar.html",
+                      {
+                          'category':category_name,
+                          'category_text':category_text
+                      })
     except:
         return HttpResponse(f"{category_name} kategorisine ait kurslar listesi string")
 
+
+
 def getCoursesByCategoryId(request,category_id):
+
     category_list = list(data.keys())
     if(category_id > len(category_list)):
         return HttpResponseNotFound("yanlış kategori seçimi yapıldı.")
