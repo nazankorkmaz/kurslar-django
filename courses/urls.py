@@ -4,7 +4,6 @@ from . import views
 
 urlpatterns = [
     path('',views.index),
-    path('list',views.kurslar),
     path('mobil-uygulama',views.mobilUygulama),
     path('<kurs>',views.details),
     path('kategori/<int:category_id>',views.getCoursesByCategoryId),
