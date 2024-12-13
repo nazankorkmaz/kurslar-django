@@ -10,6 +10,10 @@ data ={
     "mobil": "mobil kategorisine ait kurslar"   
        }
 
+#http://127.0.0.1:8000/kurslar
+def index(request):
+    return render(request,'courses/index.html')
+
 def kurslar(request):
     #return HttpResponse('kurs listesi..')
     list_items=""
@@ -27,7 +31,8 @@ def details(request,kurs):
 
 
 def mobilUygulama(request):
-    return HttpResponse("mobil uygulamalar kurs listesi")
+    return render(request,'index.html')
+    #return HttpResponse("mobil uygulamalar kurs listesi")
 
 def getCoursesByCategory(request,category_name):
    
