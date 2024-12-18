@@ -5,7 +5,7 @@
         </div>
         <div class="col-4">
             <div class="card-body">
-                <h5 class="card-title">{{course.title}}</h5>
+                <h5 class="card-title">{{course.title|upper}}</h5>
                 <p class="card-text">{{course.description}}</p>
 
                 {% if course.isUpdated %}
@@ -13,6 +13,7 @@
                 {% else %}
                     <span class="badge bg-warning">Güncelleme Bekliyor..</span>
                 {% endif %}
+                <p>{{course.date|date:"D d M Y"}}</p>
 
             </div>
         </div>
