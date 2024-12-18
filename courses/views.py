@@ -19,21 +19,31 @@ db ={
             "description":"javascript kurs açıklaması",
             "imageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUIBJNkSlQuS47lGQ7_X7AHayZaNUQviEvbQ&s",
             "slug":"javascript-kursu",
-            "date":date(2024,12,14)
+            "date":date(2024,12,14),
+            "isActive":True,
+            "isUpdated":True
+
         },
         {
             "title":"python kursu",
             "description":"python kurs açıklaması",
             "imageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2jemoAzbrIwUtn3kWI49jYMm8wQsk3OHug&s",
             "slug":"python-kursu",
-            "date":date(2024,12,14)
+            "date":date(2024,12,14),
+            "isActive":False,
+            "isUpdated":True
+
         },
         {
             "title":"web geliştirme kursu",
             "description":"web geliştirme kurs açıklaması",
             "imageUrl":"https://e7.pngegg.com/pngimages/887/666/png-clipart-web-development-mobile-app-development-software-development-android-gadget-text.png",
             "slug":"web-kursu",
-            "date":date(2024,12,18)
+            "date":date(2024,12,18),
+            "isActive":True,
+            "isUpdated":False
+
+
         }
     ],
     "categories":[
