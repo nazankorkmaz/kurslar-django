@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block page_title %}
+    Kurslar
+{% endblock page_title %}
+
 {% block content %}
     
     
@@ -8,23 +12,16 @@
             <div class="col-3">
             <!--menu-->
                 {% include "courses/partials/_categories.html" %}
-
-               
-                   
-                </div>
             </div>
-
-
-            <div class="col-9">
-            <h1>Kurslar</h1>
-
-            </div>
+        </div>
+        <div class="col-9">
+            {% for course in courses  %}
+                {% include "courses/partials/_course.html" %}
+            {% endfor %}
         </div>
     </div>
 
 {% endblock content %}
 
-{% block title %}
-    Kurslar
-{% endblock title %}
+
 

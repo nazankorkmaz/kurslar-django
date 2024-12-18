@@ -36,19 +36,23 @@ db ={
             "date":date(2024,12,18)
         }
     ],
-    "categories":["programlama","web geliştirme","mobil uygulamar"]
-
+    "categories":[
+        {id:1, "name":"programlama","slug":"programlama"},
+        {id:2, "name":"web geliştirme","slug":"web-geliştirme"},
+        {id:3, "name":"mobil uygulamar","slug":"mobil-uygulamar"},
+    ]
 }
 
 #http://127.0.0.1:8000/kurslar
 
 def index(request):
     #return HttpResponse('kurs listesi..')
-    list_items=""
-    category_list = list(data.keys())
+    kurslar = db["courses"]
+    kategoriler = db["categories"]
 
     return render(request,'courses/index.html',{
-        'categories':category_list
+        'categories':kategoriler,
+        'courses':kurslar
     })
 
     """
