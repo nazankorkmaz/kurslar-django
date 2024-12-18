@@ -1,5 +1,6 @@
 from django.shortcuts import render ,redirect
 from django.urls import reverse
+from datetime import date
 # Create your views here.
 
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
@@ -9,6 +10,35 @@ data ={
     "web-gelistrime":" web gelistrime kategorisine ait kurslar",
     "mobil": "mobil kategorisine ait kurslar"   
        }
+
+
+db ={
+    "courses" : [
+        {
+            "title":"javascript kursu",
+            "description":"javascript kurs açıklaması",
+            "imageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUIBJNkSlQuS47lGQ7_X7AHayZaNUQviEvbQ&s",
+            "slug":"javascript-kursu",
+            "date":date(2024,12,14)
+        },
+        {
+            "title":"python kursu",
+            "description":"python kurs açıklaması",
+            "imageUrl":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP2jemoAzbrIwUtn3kWI49jYMm8wQsk3OHug&s",
+            "slug":"python-kursu",
+            "date":date(2024,12,14)
+        },
+        {
+            "title":"web geliştirme kursu",
+            "description":"web geliştirme kurs açıklaması",
+            "imageUrl":"https://e7.pngegg.com/pngimages/887/666/png-clipart-web-development-mobile-app-development-software-development-android-gadget-text.png",
+            "slug":"web-kursu",
+            "date":date(2024,12,18)
+        }
+    ],
+    "categories":["programlama","web geliştirme","mobil uygulamar"]
+
+}
 
 #http://127.0.0.1:8000/kurslar
 
