@@ -10,7 +10,7 @@
                 <h5 class="card-title">{{course.title|upper}}</h5>
                 <p class="card-text">{{course.description}}</p>
 
-                {% if course.isUpdated %}
+                {% if course.isActive %}
                     <span class="badge bg-success" >Güncellendi</span>
                 {% else %}
                     <span class="badge bg-warning">Güncelleme Bekliyor..</span>

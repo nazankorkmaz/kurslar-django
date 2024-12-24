@@ -5,6 +5,8 @@ from datetime import date
 
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
+from .models import Course
+
 data ={
      "programlama": "programlama kategorisine ait kurslar",
     "web-gelistrime":" web gelistrime kategorisine ait kurslar",
@@ -57,7 +59,8 @@ db ={
 
 def index(request):
     #return HttpResponse('kurs listesi..')
-    kurslar = db["courses"]
+    kurslar = Course.objects.all()
+    #db["courses"]
     kategoriler = db["categories"]
 
     return render(request,'courses/index.html',{
