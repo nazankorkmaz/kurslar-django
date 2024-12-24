@@ -64,6 +64,9 @@ def index(request):
         'categories':kategoriler,
         'courses':kurslar
     })
+    """
+    index.html şablonunu işlemeden önce kategoriler ve kursları veritabanından çeker, bu verileri şablona aktarır ve kullanıcıya işlenmiş HTML dosyasını döner.
+    """
 
     """
        for category in category_list:
@@ -104,12 +107,24 @@ def getCoursesByCategoryId(request,category_id):
     
     category_name = category_list[category_id - 1]
     redirect_url = reverse('courses_by_category', args=[category_name])
+    #print(redirect_url) ---> /kurs/kategori/mobil
+    #print(category_name) --> mobil
+
     return redirect(redirect_url)
 
-    """
+"""
+reverse şu adımları izliyor:
+
+reverse, name='courses_by_category' olan URL'yi buluyor.
+args=[category_name]: URL'ye dinamik olarak category_name değerini ekliyor
+"""
+ 
+
+"""
     redirect_text = category_list[category_id - 1]
     #return redirect('/kurs/kategori/'+ redirect_text)
     return HttpResponseRedirect('/kurs/kategori/'+redirect_text)
 #    return HttpResponse(f"{category_id} kategorisine ait kurslar listesi int")
 
 """
+

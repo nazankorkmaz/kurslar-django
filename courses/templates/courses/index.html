@@ -2,9 +2,23 @@
 
 {% load static %}
 
+<!--
+extends: Şablon mirası için kullanılır, ana şablondan (layout.html) yapıyı miras alır.
+load static: Statik dosyaları (CSS, JS, resimler) kullanmak için gereken etikettir.
+-->
+
+
 {% block page_title %}
     Kurslar
 {% endblock page_title %}
+
+<!--
+ şablon mirası (template inheritance)
+
+ block etiketi, şablon mirası için bir alan tanımlar.
+Bu blok, alt şablonlar (child templates) tarafından doldurulabilir veya üzerine yazılabilir.
+static etiketi, projedeki statik dosyalara referans oluşturur.
+-->
 
 {% block css_files %}
     <link rel="stylesheet" href="{% static 'courses/css/style.css' %}">
