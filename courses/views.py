@@ -81,10 +81,10 @@ def index(request):
     return HttpResponse(html)
     """
 
-def details(request,kurs_id):
+def details(request,slug): #artik slug parametresinden slug degerini aliyorum
 
     try:
-        course = Course.objects.get(pk=kurs_id)
+        course = Course.objects.get(slug=slug)
     except:
         raise Http404()
     context= {
