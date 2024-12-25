@@ -3,7 +3,7 @@ from django.urls import reverse
 from datetime import date
 # Create your views here.
 
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 
 from .models import Course,Category
 
@@ -81,8 +81,18 @@ def index(request):
     return HttpResponse(html)
     """
 
-def details(request,kurs):
-    return HttpResponse(f"{kurs} detay sayfası")
+def details(request,kurs_id):
+
+    try:
+        course = Course.objects.get(pk=kurs_id)
+    except:
+        raise Http404()
+    context= {
+        'course':course
+    }
+
+    return render(request,'courses/details.html',context)
+    #return HttpResponse(f"{kurs} detay sayfası")
 
 
 def mobilUygulama(request):
