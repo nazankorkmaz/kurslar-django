@@ -3,5 +3,25 @@ from django.contrib import admin
 # Register your models here.
 from .models import Course,Category
 
-admin.site.register(Course)
-admin.site.register(Category)
+# 1. yontem
+"""
+class CourseAdmin(admin.ModelAdmin):
+    pass 
+    # buraya istenen ozellikler yazilir
+
+admin.site.register(Course,CourseAdmin)
+"""
+
+@admin.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ("title","isActive","slug",) #hangileri gozuksun listelemede
+    list_display_links = ("title","slug",)  #hangileri link olsun
+    readonly_fields = ("slug",) #burasini model.pyDa kaldırmıstık ama simdi sadece okunabilir olarak gozukuyor
+    list_filter = ("isActive","title") #sag taradfa filtreleme kısmı cıktı
+    list_editable = ("isActive",) #onceden icine girip yaman lazımdı simdi checkbox oldu
+    search_fields = ("title","descriptions") # ustte arama cubugu cıktı
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    pass
+
