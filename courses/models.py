@@ -1,6 +1,13 @@
 from django.db import models
 from django.utils.text import slugify
 
+class Category(models.Model):
+    name = models.CharField(max_length=40)
+    slug = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.name}"
+
 # Create your models here.
 class Course(models.Model):
     title = models.CharField(max_length=50)
@@ -9,7 +16,11 @@ class Course(models.Model):
     date = models.DateField()
     isActive = models.BooleanField()
     slug = models.SlugField(default="",null=False,blank=True,editable=False,unique=True,db_index=True)  # null olmasin ve default bos gelsin
+    category = models.ForeignKey(Category,default=1,on_delete=models.CASCADE ) # onceki kayitlarda hata vermesin diye defaulttta id'si 1 olan categoryleri alsin dedik
 
+    # models.CASCADE : mesela bir kategori silinirse ona bagli tum kurslar silinsin demek
+    #models.SET_NULL : kategorsi isilinirse o kurslar silinmesin o sutuna Null atsin ama bunun için bir de null = True da yazman lazim null alabilen bir sutun olmasi icin
+    # ya da models.SET_DEFAULT yapip default =1 deger de verebirlisin
     """
     blank=False ise ve kullanıcı bir formda bu alanı doldurmazsa, Django bir ValidationError fırlatır.
     """
@@ -26,9 +37,3 @@ blank=True, null=True: Hem formda boş bırakılabilir, hem de veritabanında NU
         return f"{self.title} {self.description}"
 
 
-class Category(models.Model):
-    name = models.CharField(max_length=40)
-    slug = models.CharField(max_length=50)
-
-    def __str__(self):
-        return f"{self.name}"
