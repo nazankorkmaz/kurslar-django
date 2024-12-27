@@ -7,6 +7,8 @@ from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 
 from .models import Course,Category
 
+from django.core.paginator import Paginator
+
 data ={
      "programlama": "programlama kategorisine ait kurslar",
     "web-gelistrime":" web gelistrime kategorisine ait kurslar",
@@ -144,14 +146,22 @@ args=[category_name]: URL'ye dinamik olarak category_name değerini ekliyor
 
 def getCoursesByCategoryYeni(request,slug):
    
-   kurslar = Course.objects.filter(categories__slug = slug, isActive=True)
+   kurslar = Course.objects.filter(categories__slug = slug, isActive=True).order_by("date")
    # bire çokta (category__slug = slug, isActive=True)
    kategoriler = Category.objects.all()
+
+   paginator = Paginator(kurslar,1) # hangisini sayfalicaksan onu ve adetini ver
+   page = request.GET.get('page',1) # yani url'de page varsa onu al o sayfayı dondur yoksa ilk sayfayi dondur
+    #http://127.0.0.1:8000/kurs/kategori/programlama?page=2
+   page_obj = paginator.page(page) # o sayfadaki gosterilecek kurs bilgilerini cektik
+
+   print(page_obj.paginator.count)
+   print(page_obj.paginator.num_pages)
 
    return render(request, 'courses/index.html',
                  {
                      'categories':kategoriler,
-                     'courses':kurslar,
+                     'page_obj':page_obj,#kurslar,
                      'seciliKategori':slug
                  })
 
