@@ -144,7 +144,8 @@ args=[category_name]: URL'ye dinamik olarak category_name değerini ekliyor
 
 def getCoursesByCategoryYeni(request,slug):
    
-   kurslar = Course.objects.filter(category__slug = slug, isActive=True)
+   kurslar = Course.objects.filter(categories__slug = slug, isActive=True)
+   # bire çokta (category__slug = slug, isActive=True)
    kategoriler = Category.objects.all()
 
    return render(request, 'courses/index.html',

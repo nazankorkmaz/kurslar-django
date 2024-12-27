@@ -17,7 +17,10 @@ class Course(models.Model):
     date = models.DateField(auto_now=True)
     isActive = models.BooleanField()
     slug = models.SlugField(default="",null=False,blank=True,editable=False,unique=True,db_index=True)  # null olmasin ve default bos gelsin
-    category = models.ForeignKey(Category,default=1,on_delete=models.CASCADE, related_name="kurslar" ) # onceki kayitlarda hata vermesin diye defaulttta id'si 1 olan categoryleri alsin dedik
+    categories = models.ManyToManyField(Category)
+
+
+    # category = models.ForeignKey(Category,default=1,on_delete=models.CASCADE, related_name="kurslar" ) # onceki kayitlarda hata vermesin diye defaulttta id'si 1 olan categoryleri alsin dedik
 
     # models.CASCADE : mesela bir kategori silinirse ona bagli tum kurslar silinsin demek
     #models.SET_NULL : kategorsi isilinirse o kurslar silinmesin o sutuna Null atsin ama bunun için bir de null = True da yazman lazim null alabilen bir sutun olmasi icin
