@@ -15,7 +15,8 @@ class Course(models.Model):
     description = models.TextField()
     imageUrl = models.CharField(max_length=50, blank = False)
     date = models.DateField(auto_now=True)
-    isActive = models.BooleanField()
+    isActive = models.BooleanField(default=False)
+    isHome = models.BooleanField(default=False)
     slug = models.SlugField(default="",null=False,blank=True,editable=False,unique=True,db_index=True)  # null olmasin ve default bos gelsin
     categories = models.ManyToManyField(Category)
 

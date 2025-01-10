@@ -14,11 +14,11 @@ admin.site.register(Course,CourseAdmin)
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ("title","isActive","slug","category_list") #hangileri gozuksun listelemede
+    list_display = ("title","isActive","isHome","slug","category_list") #hangileri gozuksun listelemede
     list_display_links = ("title","slug",)  #hangileri link olsun
     readonly_fields = ("slug",) #burasini model.pyDa kaldırmıstık ama simdi sadece okunabilir olarak gozukuyor
-    list_filter = ("isActive","title") #sag taradfa filtreleme kısmı cıktı
-    list_editable = ("isActive",) #onceden icine girip yaman lazımdı simdi checkbox oldu
+    list_filter = ("isActive","title","isHome") #sag taradfa filtreleme kısmı cıktı
+    list_editable = ("isActive","isHome") #onceden icine girip yaman lazımdı simdi checkbox oldu
     search_fields = ("title","descriptions") # ustte arama cubugu cıktı
 
     def category_list(self,obj): # obj yani sirayla gelen kurs

@@ -61,7 +61,7 @@ db ={
 
 def index(request):
     #return HttpResponse('kurs listesi..')
-    kurslar = Course.objects.all()
+    kurslar = Course.objects.filter(isActive=1, isHome=1)
     #db["courses"]
     kategoriler = Category.objects.all()
     #db["categories"]
@@ -158,7 +158,7 @@ def getCoursesByCategoryYeni(request,slug):
    print(page_obj.paginator.count)
    print(page_obj.paginator.num_pages)
 
-   return render(request, 'courses/index.html',
+   return render(request, 'courses/list.html',
                  {
                      'categories':kategoriler,
                      'page_obj':page_obj,#kurslar,
@@ -166,4 +166,24 @@ def getCoursesByCategoryYeni(request,slug):
                  })
 
 
+#http://127.0.0.1:8000/kurs/search?q=web
+def search(request):
+    #print(request.GET)
+    #print(request.GET["q"])
+    #print(request.GET["order_by"])
 
+    if "q" in request.GET and request.GET["q"] != "":
+        q = request.GET["q"]
+        kurslar = Course.objects.filter(isActive=True,title__contains=q).order_by("date")
+
+        kategoriler = Category.objects.all()
+    
+    else:
+        return redirect("/kurs")
+
+
+    return render(request, 'courses/search.html',
+                    {
+                        'categories':kategoriler,
+                        'courses':kurslar,
+                    })
