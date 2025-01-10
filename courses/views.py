@@ -187,3 +187,45 @@ def search(request):
                         'categories':kategoriler,
                         'courses':kurslar,
                     })
+
+
+def create_course(request):
+
+    if request.method == "POST":
+        title = request.POST["title"] # nameden geliyor forumlardaki
+        description = request.POST["description"]
+        slug = request.POST["slug"]
+        imageUrl = request.POST["imageUrl"]
+        isActive = request.POST.get("isActive",False) # isaretlenmemisse false versin defaultta
+        isHome = request.POST.get("isHome",False)
+
+        if isActive == "on":
+            isActive = True
+        
+        if isHome == "on":
+            isHome = True
+
+        #error validation
+        error = False
+        msg = ""
+
+        if title == "":
+            error = True
+            msg = "Title zorunlu bir alandır"
+        
+        if len(title)<5:
+            error = True
+            msg = "Title için en az 5 karakter girilmelidir."
+
+        if error:
+            return render(request,"courses/create-course.html",{"error":True,"msg":msg})
+
+        print(title,description)
+        
+        #veritabanina kayit edildi
+        kurs = Course(title=title,description=description,imageUrl=imageUrl,slug=slug,isActive=isActive,isHome=isHome)
+        kurs.save()
+        return redirect("/kurs")
+
+    return render(request,'courses/create-course.html') 
+    #bu sadece GET requestleri karsilar

@@ -7,6 +7,12 @@
             <li class="nav-item">
                 <a href="{% url 'index' %}" class="nav-link">Kurslar{% block kurslarIkon %}{% endblock  %}</a>
             </li>
+           
+            <li class="nav-item">
+                <a href="{% url 'create_course' %}" class="nav-link"> Kurs ekle</a>
+            </li>
+
+        </li>
             <li class="nav-item">
                 <a href="/contact" class="nav-link">İletişim{% block contactIkon %}{% endblock %}</a>
                 
@@ -18,6 +24,8 @@
             </li>
 
         </ul>
+
+       
 
         <form action="{% url "search" %}" class="d-flex">
 
