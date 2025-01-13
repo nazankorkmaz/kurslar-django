@@ -188,9 +188,29 @@ def search(request):
                         'courses':kurslar,
                     })
 
-
+from courses.forms import CourseCreateForm
 def create_course(request):
+ 
+    if request.method == "POST":
+        form = CourseCreateForm(request.POST) # form olusturuldu
 
+        if form.is_valid(): # yani form duzgun doldurulmus ve gecerli ise
+            kurs = Course(
+                title= form.cleaned_data["title"],
+                description = form.cleaned_data["description"],
+                imageUrl = form.cleaned_data["imageUrl"],
+                slug = form.cleaned_data["slug"]
+            )
+        kurs.save()
+        return redirect("/kurs") #kursu veritabanina ekle ve kusrlar sayfasina don
+    else: # yani ilk burasi cagirilir.
+        form = CourseCreateForm() # formu bos tekrar olustur ve sayfaya yolla 
+    
+    return render(request,"courses/create-course.html",{"form":form})
+    
+
+    # ilk yol html sayfasi ile kendisimiz manuel yapmistk
+    """
     if request.method == "POST":
         title = request.POST["title"] # nameden geliyor forumlardaki
         description = request.POST["description"]
@@ -229,3 +249,4 @@ def create_course(request):
 
     return render(request,'courses/create-course.html') 
     #bu sadece GET requestleri karsilar
+"""

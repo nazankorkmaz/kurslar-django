@@ -28,9 +28,12 @@
                     </div>
                 {% endif %}
 
-               <form action="{% url 'create_course' %}" method="POST"> <!--kaydetttiklerimi yine ayni methota geri dondurucem-->
+               <form action="{% url 'create_course' %}" method="POST" > <!--kaydetttiklerimi yine ayni methota geri dondurucem-->
 
                     {% csrf_token %}
+
+                    {{form.as_p}}
+                    <!--
 
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
@@ -57,7 +60,7 @@
                         <input type="checkbox" name="isHome" class="form-check-input">
                         <label for="isHome" class="form-check-label">isHome</label>
                         
-                    </div>
+                    </div> -->
 
                     <button class="btn btn-primary" type="submit">Kaydet</button>
                </form>
