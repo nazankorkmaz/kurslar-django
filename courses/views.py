@@ -195,6 +195,7 @@ def create_course(request):
         form = CourseCreateForm(request.POST) # form olusturuldu
 
         if form.is_valid(): # yani form duzgun doldurulmus ve gecerli ise
+            """
             kurs = Course(
                 title= form.cleaned_data["title"],
                 description = form.cleaned_data["description"],
@@ -202,6 +203,8 @@ def create_course(request):
                 slug = form.cleaned_data["slug"]
             )
             kurs.save()
+            """
+            form.save()  #modelform metodu ile
             return redirect("/kurs") #kursu veritabanina ekle ve kusrlar sayfasina don
     else: # yani ilk burasi cagirilir.
         form = CourseCreateForm() # formu bos tekrar olustur ve sayfaya yolla 
