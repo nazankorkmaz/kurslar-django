@@ -201,8 +201,8 @@ def create_course(request):
                 imageUrl = form.cleaned_data["imageUrl"],
                 slug = form.cleaned_data["slug"]
             )
-        kurs.save()
-        return redirect("/kurs") #kursu veritabanina ekle ve kusrlar sayfasina don
+            kurs.save()
+            return redirect("/kurs") #kursu veritabanina ekle ve kusrlar sayfasina don
     else: # yani ilk burasi cagirilir.
         form = CourseCreateForm() # formu bos tekrar olustur ve sayfaya yolla 
     
