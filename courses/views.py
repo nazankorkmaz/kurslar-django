@@ -1,3 +1,5 @@
+import os
+import random
 from django.shortcuts import get_object_or_404, render ,redirect
 from django.urls import reverse
 from datetime import date
@@ -292,7 +294,20 @@ def upload(request):
         print(uploaded_name)
         print(uploaded_name.size)
         print(uploaded_name.content_type)
-
+        
+        handle_uploaded_files(uploaded_name)
         return render(request, "courses/success.html")
 
     return render(request, "courses/upload.html")
+
+def handle_uploaded_files(file):
+    number = random.randint(1,999999)
+    filename, file_extention = os.path.splitext(file.name) # resim.jpg = resim ve .jpg olarak ayirilir.
+
+    name = filename + "_"+str(number) +file_extention  
+
+    with open("temp/" + name, "wb+") as destination: # "wb+" → İkili (binary) modda yazma izniyle yeni bir dosya açar.
+        for chunk in file.chunks():  
+            destination.write(chunk)
+            
+        #Büyük dosyalar belleği tüketmemesi için parça parça (chunk olarak) yazılır.
