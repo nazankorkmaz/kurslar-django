@@ -253,3 +253,13 @@ def create_course(request):
     return render(request,'courses/create-course.html') 
     #bu sadece GET requestleri karsilar
 """
+
+def course_list(request):
+    kurslar = Course.objects.all()
+    return render(request,'courses/course-list.html',
+                  {
+                      "courses":kurslar
+                  })
+
+def course_edit(request, id):
+    pass
