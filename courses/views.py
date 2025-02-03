@@ -274,3 +274,13 @@ def course_edit(request, id):
         form = CourseEditForm(instance=course)  # form nesnesini ilgli kurs bilgisi ile olusturur
 
     return render(request, "courses/edit-course.html",{"form":form})
+
+
+def course_delete(request, id):
+    course = get_object_or_404(Course,pk = id)
+
+    if request.method == "POST":
+        course.delete()
+        return redirect("course_list")
+    
+    return render(request,"courses/course-delete.html", {"course":course})
