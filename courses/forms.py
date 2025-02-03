@@ -42,3 +42,30 @@ class CourseCreateForm(forms.ModelForm):
         }
     }
       
+
+class CourseEditForm(forms.ModelForm):
+    
+    # bir alt sinif olusturuluyor. Yani hazir olan Course sınıfının ozelliklerini cekicez sifirdan yazmak yerine
+    class Meta:
+        model = Course
+        fields = ('title','description','imageUrl','categories','isActive',) #"__all__" # bunda direk hepsi geliyor
+        labels ={
+            "title" :"kurs başlığı",
+            "description":"açıklama"
+        }
+    widgets ={
+        "title" : forms.TextInput(attrs={"class":"form-control"}),
+        "description":forms.Textarea(attrs={"class":"form-control"}),
+        "imageUrl":forms.TextInput(attrs={"class":"form-control"}),
+        "categories":forms.SelectMultiple(attrs={"class":"form-control"})
+    }
+    error_messages ={
+        "title" :{
+            "required" :"kurs başlığı girmelisiniz.",
+            "max_length":"maksimum 50 karakter girmelisiniz"
+        },
+        "description":{
+            "required":"kurs açıklaması girmelisiniz."
+        }
+    }
+      

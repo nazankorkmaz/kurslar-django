@@ -1,4 +1,4 @@
-from django.shortcuts import render ,redirect
+from django.shortcuts import get_object_or_404, render ,redirect
 from django.urls import reverse
 from datetime import date
 # Create your views here.
@@ -188,7 +188,7 @@ def search(request):
                         'courses':kurslar,
                     })
 
-from courses.forms import CourseCreateForm
+from courses.forms import CourseCreateForm, CourseEditForm
 def create_course(request):
  
     if request.method == "POST":
@@ -262,4 +262,15 @@ def course_list(request):
                   })
 
 def course_edit(request, id):
-    pass
+    course = get_object_or_404(Course,pk=id)   # id degeri ile eslesen kurs gelsin
+
+    #buradada post edilen bilgilerle veritabanina sql sorgusu gonderilir ve kaydedilir
+    if request.method == "POST":
+        form = CourseEditForm(request.POST,instance=course)
+        form.save()
+        return redirect("course_list")
+    else:
+
+        form = CourseEditForm(instance=course)  # form nesnesini ilgli kurs bilgisi ile olusturur
+
+    return render(request, "courses/edit-course.html",{"form":form})
