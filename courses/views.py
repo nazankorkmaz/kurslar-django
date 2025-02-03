@@ -190,7 +190,7 @@ def search(request):
                         'courses':kurslar,
                     })
 
-from courses.forms import CourseCreateForm, CourseEditForm
+from courses.forms import CourseCreateForm, CourseEditForm, UploadForm
 def create_course(request):
  
     if request.method == "POST":
@@ -290,16 +290,28 @@ def course_delete(request, id):
 def upload(request):
 
     if request.method == "POST":
-        uploaded_names = request.FILES.getlist("images") #["image"] # name'den geldi htmldeki 
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            uploaded_names = request.FILES["image"]  
+            handle_uploaded_files(uploaded_names)
+            return render(request, "courses/success.html")
+
+        #uploaded_names = request.FILES.getlist("images") #["image"] # 
+        
+        #name'den geldi htmldeki 
         #print(uploaded_name)
         #print(uploaded_name.size)
         #print(uploaded_name.content_type)
         
+        """
         for file in uploaded_names:
             handle_uploaded_files(file)
-        return render(request, "courses/success.html")
+        """
+        #return render(request, "courses/success.html")
 
-    return render(request, "courses/upload.html")
+    else:
+        form = UploadForm()
+    return render(request, "courses/upload.html",{"form":form})
 
 def handle_uploaded_files(file):
     number = random.randint(1,999999)
