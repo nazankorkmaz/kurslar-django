@@ -290,12 +290,13 @@ def course_delete(request, id):
 def upload(request):
 
     if request.method == "POST":
-        uploaded_name = request.FILES["image"] # name'den geldi htmldeki 
-        print(uploaded_name)
-        print(uploaded_name.size)
-        print(uploaded_name.content_type)
+        uploaded_names = request.FILES.getlist("images") #["image"] # name'den geldi htmldeki 
+        #print(uploaded_name)
+        #print(uploaded_name.size)
+        #print(uploaded_name.content_type)
         
-        handle_uploaded_files(uploaded_name)
+        for file in uploaded_names:
+            handle_uploaded_files(file)
         return render(request, "courses/success.html")
 
     return render(request, "courses/upload.html")
@@ -309,5 +310,5 @@ def handle_uploaded_files(file):
     with open("temp/" + name, "wb+") as destination: # "wb+" → İkili (binary) modda yazma izniyle yeni bir dosya açar.
         for chunk in file.chunks():  
             destination.write(chunk)
-            
+
         #Büyük dosyalar belleği tüketmemesi için parça parça (chunk olarak) yazılır.
