@@ -284,3 +284,15 @@ def course_delete(request, id):
         return redirect("course_list")
     
     return render(request,"courses/course-delete.html", {"course":course})
+
+def upload(request):
+
+    if request.method == "POST":
+        uploaded_name = request.FILES["image"] # name'den geldi htmldeki 
+        print(uploaded_name)
+        print(uploaded_name.size)
+        print(uploaded_name.content_type)
+
+        return render(request, "courses/success.html")
+
+    return render(request, "courses/upload.html")
