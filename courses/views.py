@@ -7,7 +7,7 @@ from datetime import date
 
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 
-from .models import Course,Category
+from .models import Course,Category, UploadModels
 
 from django.core.paginator import Paginator
 
@@ -292,8 +292,10 @@ def upload(request):
     if request.method == "POST":
         form = UploadForm(request.POST, request.FILES)
         if form.is_valid():
-            uploaded_names = request.FILES["image"]  
-            handle_uploaded_files(uploaded_names)
+            #uploaded_names = request.FILES["image"]  
+            #handle_uploaded_files(uploaded_names)
+            model = UploadModels(image = request.FILES["image"])
+            model.save()
             return render(request, "courses/success.html")
 
         #uploaded_names = request.FILES.getlist("images") #["image"] # 

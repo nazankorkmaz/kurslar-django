@@ -42,3 +42,7 @@ blank=True, null=True: Hem formda boş bırakılabilir, hem de veritabanında NU
         return f"{self.title} {self.description}"
 
 
+class UploadModels(models.Model):
+    image = models.ImageField(upload_to="images")
+
+# settings.py'a eklendi -->  MEDIA_ROOT = BASE_DIR / "uploads"
