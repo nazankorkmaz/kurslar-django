@@ -2,8 +2,13 @@
 
 <div class="card mb-3">
     <div class="row">
-        <div class="col-2">
-            <img class="img-fluid rounded-start" src="{% static 'courses/img/'|add:course.imageUrl %}" alt="{{course.title}}" srcset="">
+        <div class="col-4">
+            
+            <!--
+            <img class="img-fluid rounded-start" src="{% static 'courses/img/'|add:course.image %}" alt="{{course.title}}" srcset="">
+            -->
+
+            <img class="img-fluid rounded-start" src="{{course.image.url}}" alt="{{course.title}}" srcset="">
         </div>
         <div class="col-4">
             <div class="card-body">

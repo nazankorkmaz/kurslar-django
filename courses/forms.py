@@ -22,7 +22,7 @@ class CourseCreateForm(forms.ModelForm):
     # bir alt sinif olusturuluyor. Yani hazir olan Course sınıfının ozelliklerini cekicez sifirdan yazmak yerine
     class Meta:
         model = Course
-        fields = ('title','description','imageUrl') #"__all__" # bunda direk hepsi geliyor
+        fields = ('title','description','image') #"__all__" # bunda direk hepsi geliyor
         labels ={
             "title" :"kurs başlığı",
             "description":"açıklama"
@@ -30,7 +30,7 @@ class CourseCreateForm(forms.ModelForm):
     widgets ={
         "title" : forms.TextInput(attrs={"class":"form-control"}),
         "description":forms.Textarea(attrs={"class":"form-control"}),
-        "imageUrl":forms.TextInput(attrs={"class":"form-control"})
+        #"imageUrl":forms.TextInput(attrs={"class":"form-control"})
     }
     error_messages ={
         "title" :{
@@ -48,7 +48,7 @@ class CourseEditForm(forms.ModelForm):
     # bir alt sinif olusturuluyor. Yani hazir olan Course sınıfının ozelliklerini cekicez sifirdan yazmak yerine
     class Meta:
         model = Course
-        fields = ('title','description','imageUrl','categories','isActive',) #"__all__" # bunda direk hepsi geliyor
+        fields = ('title','description','image','categories','isActive',) #"__all__" # bunda direk hepsi geliyor
         labels ={
             "title" :"kurs başlığı",
             "description":"açıklama"
@@ -56,7 +56,7 @@ class CourseEditForm(forms.ModelForm):
     widgets ={
         "title" : forms.TextInput(attrs={"class":"form-control"}),
         "description":forms.Textarea(attrs={"class":"form-control"}),
-        "imageUrl":forms.TextInput(attrs={"class":"form-control"}),
+        #"imageUrl":forms.TextInput(attrs={"class":"form-control"}),
         "categories":forms.SelectMultiple(attrs={"class":"form-control"})
     }
     error_messages ={

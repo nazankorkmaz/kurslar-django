@@ -194,7 +194,7 @@ from courses.forms import CourseCreateForm, CourseEditForm, UploadForm
 def create_course(request):
  
     if request.method == "POST":
-        form = CourseCreateForm(request.POST) # form olusturuldu
+        form = CourseCreateForm(request.POST, request.FILES) # form olusturuldu
 
         if form.is_valid(): # yani form duzgun doldurulmus ve gecerli ise
             """
@@ -268,7 +268,7 @@ def course_edit(request, id):
 
     #buradada post edilen bilgilerle veritabanina sql sorgusu gonderilir ve kaydedilir
     if request.method == "POST":
-        form = CourseEditForm(request.POST,instance=course)
+        form = CourseEditForm(request.POST, request.FILES,instance=course)
         form.save()
         return redirect("course_list")
     else:
