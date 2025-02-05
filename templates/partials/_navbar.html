@@ -3,41 +3,63 @@
     <div class="container">
         <a href="{% url 'index' %}" class="navbar-brand">Course App</a>
 
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a href="{% url 'index' %}" class="nav-link">Kurslar{% block kurslarIkon %}{% endblock  %}</a>
-            </li>
-           
-            <li class="nav-item">
-                <a href="{% url 'create_course' %}" class="nav-link"> Admin Kurs ekle</a>
-            </li>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        
+        <div class="collapse navbar-collapse" id="navbar" >
 
-            <li class="nav-item">
-                <a href="{% url 'course_list' %}" class="nav-link"> Admin Kurslar</a>
-            </li>
-
-        </li>
-            <li class="nav-item">
-                <a href="/contact" class="nav-link">İletişim{% block contactIkon %}{% endblock %}</a>
-                
-            </li>
-            <li class="nav-item">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a href="{% url 'index' %}" class="nav-link">Kurslar{% block kurslarIkon %}{% endblock  %}</a>
+                </li>
             
-            <a href="/about" class="nav-link">Hakkımızda{% block hakkimizdaIkon %}{% endblock  %}</a>
+                <li class="nav-item">
+                    <a href="{% url 'create_course' %}" class="nav-link"> Admin Kurs ekle</a>
+                </li>
 
-            </li>
+                <li class="nav-item">
+                    <a href="{% url 'course_list' %}" class="nav-link"> Admin Kurslar</a>
+                </li>
 
-        </ul>
+                <li class="nav-item">
+                    <a href="/contact" class="nav-link">İletişim{% block contactIkon %}{% endblock %}</a>
+                    
+                </li>
+                <li class="nav-item">
+                
+                <a href="/about" class="nav-link">Hakkımızda{% block hakkimizdaIkon %}{% endblock  %}</a>
 
-       
+                </li>
 
-        <form action="{% url "search" %}" class="d-flex">
+            </ul>
 
-            <input class="form-control me-1"  type="text" name="q"  placeholder="Anahtar Kelime">
 
-            <button type="submit" class="btn btn-secondary" >Arama</button>
+            <ul class="navbar-nav me-1">
+                <li class="nav-item">
+                    <a href="{% url 'user_login' %}" class="nav-link">Login</a>
+                </li>
+            
+                <li class="nav-item">
+                    <a href="{% url 'user_register' %}" class="nav-link"> Register</a>
+                </li>
 
-        </form>
+                <li class="nav-item">
+                    <a href="{% url 'user_logout' %}" class="nav-link"> Logout</a>
+                </li>
 
+
+            </ul>
+        
+
+            <form action="{% url "search" %}" class="d-flex">
+
+                <input class="form-control me-1"  type="text" name="q"  placeholder="Anahtar Kelime">
+
+                <button type="submit" class="btn btn-secondary" >Arama</button>
+
+            </form>
+
+        </div>
     </div>
 </navbar>
