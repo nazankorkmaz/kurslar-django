@@ -13,11 +13,14 @@
                 <li class="nav-item">
                     <a href="{% url 'index' %}" class="nav-link">Kurslar{% block kurslarIkon %}{% endblock  %}</a>
                 </li>
-            
-                <li class="nav-item">
-                    <a href="{% url 'create_course' %}" class="nav-link"> Admin Kurs ekle</a>
-                </li>
+                
+                {% if user.is_superuser %}
+                    <li class="nav-item">
+                        <a href="{% url 'create_course' %}" class="nav-link"> Admin Kurs ekle</a>
+                    </li>
+                {% endif %}
 
+               
                 <li class="nav-item">
                     <a href="{% url 'course_list' %}" class="nav-link"> Admin Kurslar</a>
                 </li>

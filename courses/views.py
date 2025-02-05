@@ -191,6 +191,13 @@ def search(request):
                     })
 
 from courses.forms import CourseCreateForm, CourseEditForm, UploadForm
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+
+def isAdmin(user):
+    return user.is_superuser
+
+@user_passes_test(isAdmin)  # admin yetkisi var mi diye bakilir
 def create_course(request):
  
     if request.method == "POST":
@@ -256,6 +263,7 @@ def create_course(request):
     #bu sadece GET requestleri karsilar
 """
 
+@login_required()  #settingse LOGIN_URL verdik buraya yonlendiricek hep burda sadece kullanicinin giris yapmis olamsina bakilir
 def course_list(request):
     kurslar = Course.objects.all()
     return render(request,'courses/course-list.html',
