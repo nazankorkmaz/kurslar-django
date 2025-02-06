@@ -38,7 +38,13 @@ static etiketi, projedeki statik dosyalara referans oluşturur.
         </div>
         <div class="col-9">
 
-
+           <!-- Slider Üstte -->
+           <div class="row mb-4">
+            <div class="col-12">
+                {% include 'courses/partials/_slider.html' %}
+            </div>
+        </div>
+           
            {% if courses|length == 0 %} <!-- page_obj.object_list-->
                 <div class="alert alert-warning">Kurs Bulunamadı.</div>
             {% endif %}
