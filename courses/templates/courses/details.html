@@ -37,11 +37,14 @@ static etiketi, projedeki statik dosyalara referans oluşturur.
         </div>
         <div class="col-9">
             <h1 class="h3">{{course.title}}</h1>
+            <p>{{course.subtitle}}</p>
             <p>
-                {{course.description}}
+                {{course.description|safe}}
             </p>
+           
         </div>
     </div>
+   
 
 {% endblock content %}
 
