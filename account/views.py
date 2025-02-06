@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from account.forms import LoginUserForm
 # Create your views here.
 
 def user_login(request):
@@ -12,7 +13,9 @@ def user_login(request):
         return render(request,"account/login.html",{"error":"yetkiniz yok balım :)"})
 
     if request.method == "POST":
-        form = AuthenticationForm(request, data = request.POST)
+        form = LoginUserForm(request, data = request.POST)
+        #form = AuthenticationForm(request, data = request.POST)
+        
         if form.is_valid():
             username= form.cleaned_data.get("username")
             password= form.cleaned_data.get("password")
@@ -43,7 +46,8 @@ def user_login(request):
             """
     
     else:
-        form = AuthenticationForm()
+        form = LoginUserForm()
+        #form = AuthenticationForm()
 
         return render(request,"account/login.html", {"form":form})
             
