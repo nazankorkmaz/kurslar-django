@@ -25,7 +25,8 @@
 
                 <form method="post">
                     {% csrf_token %}
-
+                    {% include "partials/_form.html" %}
+                    <!---
                     {% if error %}
                         <div class="alert alert-danger">
                             {{error}}
@@ -41,7 +42,7 @@
                         <label for="password" class="form-label">Password</label>
                         <input type="password" name="password" id="password" class="form-control" required>
                     </div>
-
+                -->
                     <button type="submit" value="Login" class="btn btn-primary">Login</button>
                 </form>
                 
