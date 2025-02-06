@@ -7,7 +7,7 @@ from datetime import date
 
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect, Http404
 
-from .models import Course,Category, UploadModels
+from .models import Course,Category, Slider, UploadModels
 
 from django.core.paginator import Paginator
 
@@ -67,10 +67,12 @@ def index(request):
     #db["courses"]
     kategoriler = Category.objects.all()
     #db["categories"]
+    sliders = Slider.objects.filter(is_active=True)
 
     return render(request,'courses/index.html',{
         'categories':kategoriler,
-        'courses':kurslar
+        'courses':kurslar,
+        'sliders':sliders
     })
     """
     index.html şablonunu işlemeden önce kategoriler ve kursları veritabanından çeker, bu verileri şablona aktarır ve kullanıcıya işlenmiş HTML dosyasını döner.

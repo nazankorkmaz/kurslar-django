@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Course,Category
+from .models import Course,Category, Slider
 
 # 1. yontem
 """
@@ -35,3 +35,5 @@ class CategoryAdmin(admin.ModelAdmin):
    
     def course_count(self,obj):
         return obj.course_set.count()
+    
+admin.site.register(Slider)

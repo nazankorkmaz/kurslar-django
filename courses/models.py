@@ -52,3 +52,12 @@ class UploadModels(models.Model):
     image = models.ImageField(upload_to="images")
 
 # settings.py'a eklendi -->  MEDIA_ROOT = BASE_DIR / "uploads"
+
+class Slider(models.Model):
+    title = models.CharField(max_length=100)
+    image = models.ImageField(upload_to="images")
+    is_active= models.BooleanField(default=False)
+    course= models.ForeignKey(Course, on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.title}"
