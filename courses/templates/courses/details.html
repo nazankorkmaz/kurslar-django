@@ -32,7 +32,7 @@ static etiketi, projedeki statik dosyalara referans oluşturur.
     <div class="container mt-3">
         <div class="row">
             <div class="col-3">
-                <img class="img-fluid rounded" src="{% static 'courses/img/'|add:course.imageUrl %}" alt="{{course.title}}" srcset="">
+                <img class="img-fluid rounded" src="{{course.image.url}}" alt="{{course.title}}" srcset="">
             </div>
         </div>
         <div class="col-9">
