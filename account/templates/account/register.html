@@ -23,9 +23,11 @@
                 <h1>Login</h1>
                 <hr>
 
-                <form method="post">
+                <form method="post" novalidate>
                     {% csrf_token %}
 
+                    {% include "partials/_form.html" %}
+<!--
                     {% if error %}
                         <div class="alert alert-danger">
                             {{error}}
@@ -51,7 +53,7 @@
                         <label for="repassword" class="form-label">Re-Password</label>
                         <input type="password" name="repassword" id="repassword" class="form-control" required>
                     </div>
-
+                -->
                     <button type="submit" value="Login" class="btn btn-primary">Register</button>
                 </form>
                 

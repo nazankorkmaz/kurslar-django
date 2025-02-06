@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from account.forms import LoginUserForm
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 
 def user_login(request):
@@ -54,7 +55,28 @@ def user_login(request):
         
 
 def user_register(request):
+
     if request.method == "POST":
+    
+      form = UserCreationForm(request.POST)
+
+      if form.is_valid():
+        form.save()
+
+        username = form.cleaned_data["username"]
+        password = form.cleaned_data["password1"]
+        user = authenticate(request, username =  username, password=password)
+        login(request,user)
+        return redirect("index")
+      else:
+        return render(request,"account/register.html",{"form":form})
+
+
+    else:
+      form = UserCreationForm()
+      return render(request,"account/register.html",{"form":form})
+    """  
+  if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
         password = request.POST["password"]
@@ -79,6 +101,8 @@ def user_register(request):
 
     else:
         return render(request,"account/register.html")
+    """
+    
 
 def user_logout(request):
     messages.add_message(request, messages.SUCCESS,"Çıkış Başarılı")
