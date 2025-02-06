@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, PasswordChangeForm
 from django.forms import widgets
 from django.contrib import messages
 
@@ -20,7 +20,7 @@ class LoginUserForm(AuthenticationForm):
         return username
     
     def confirm_login_allowed(self, user):
-        if user.username.startswith("a"):
+        if user.username.startswith("x"):
             raise forms.ValidationError("bu kullanıcı adı ile login olamazsınız.")
         
 class NewUserForm(UserCreationForm):
@@ -43,3 +43,11 @@ class NewUserForm(UserCreationForm):
             self.add_error("email","email daha önce kullanılmış")
         
         return email
+    
+class UserPasswordChangeForm(PasswordChangeForm):
+ 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["new_password1"].widget = widgets.PasswordInput(attrs={"class":"form-control"})
+        self.fields["new_password2"].widget = widgets.PasswordInput(attrs={"class":"form-control"})
+        self.fields["old_password"].widget = widgets.PasswordInput(attrs={"class":"form-control"})
